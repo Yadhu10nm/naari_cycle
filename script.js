@@ -113,13 +113,96 @@ const surveyData = {
     document.getElementById("btnNext").innerText = step===totalSteps?"Submit":"Next →";
   }
   
+  // START BUTTON
   document.getElementById("startBtn").onclick = ()=>{
     document.getElementById("heroSection").style.display="none";
     document.getElementById("surveyMain").style.display="block";
     showStep(1);
   };
   
+  // ==========================
+  // 🚨 VALIDATION
+  // ==========================
+  
+  function validateStep(step){
+  
+    if(step === 1){
+      if(!getValue("age")){
+        alert("Please select your age");
+        return false;
+      }
+      if(!getValue("location")){
+        alert("Please select your location");
+        return false;
+      }
+    }
+  
+    if(step === 2){
+      if(!getValue("height")){
+        alert("Please select your height");
+        return false;
+      }
+      if(!getValue("weight")){
+        alert("Please select your weight");
+        return false;
+      }
+      if(!getValue("weightChange")){
+        alert("Please select weight change");
+        return false;
+      }
+    }
+  
+    if(step === 3){
+      if(!getValue("tracks")){
+        alert("Please answer tracking question");
+        return false;
+      }
+      if(!getValue("knowsApps")){
+        alert("Please answer about apps");
+        return false;
+      }
+    }
+  
+    if(step === 4){
+      if(getCheckboxValues("features1Options").length === 0){
+        alert("Please select at least one feature");
+        return false;
+      }
+      if(!getValue("aiApp")){
+        alert("Please answer AI app question");
+        return false;
+      }
+      if(!getValue("price")){
+        alert("Please select price option");
+        return false;
+      }
+    }
+  
+    if(step === 5){
+      if(getCheckboxValues("problemsOptions").length === 0){
+        alert("Please select at least one problem");
+        return false;
+      }
+      if(!getValue("avoidedGyn")){
+        alert("Please answer doctor question");
+        return false;
+      }
+      if(!getValue("paymentModel")){
+        alert("Please select payment model");
+        return false;
+      }
+    }
+  
+    return true;
+  }
+  
+  // NEXT BUTTON
   document.getElementById("btnNext").onclick = ()=>{
+  
+    if(!validateStep(currentStep)){
+      return;
+    }
+  
     if(currentStep<totalSteps){
       currentStep++;
       showStep(currentStep);
@@ -128,6 +211,7 @@ const surveyData = {
     }
   };
   
+  // BACK BUTTON
   document.getElementById("btnBack").onclick = ()=>{
     currentStep--;
     showStep(currentStep);
@@ -178,7 +262,6 @@ const surveyData = {
   // ==========================
   
   const API_URL = "https://script.google.com/macros/s/AKfycbzBbWGQ2pQDGZAppvFFCWVMhKSkQUc6euvNYUA5jK0QJ0oBqwkbPWkaQ2NbpNkVeTmpvw/exec";
-  
   
   function submitForm(){
   
