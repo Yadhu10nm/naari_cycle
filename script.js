@@ -105,12 +105,33 @@ const surveyData = {
   let currentStep = 1;
   const totalSteps = 5;
   
+
+
   function showStep(step){
     document.querySelectorAll(".step").forEach(s=>s.style.display="none");
     document.getElementById(`step${step}`).style.display="block";
   
-    document.getElementById("btnBack").style.display = step===1?"none":"inline-block";
-    document.getElementById("btnNext").innerText = step===totalSteps?"Submit":"Next →";
+    document.getElementById("btnBack").style.display =
+      step===1?"none":"inline-block";
+  
+    document.getElementById("btnNext").innerText =
+      step===totalSteps?"Submit":"Next →";
+  
+    // ✅ ADD THIS LINE
+    updateProgress();
+  }
+
+  function updateProgress(){
+
+    const percent = Math.round((currentStep / totalSteps) * 100);
+  
+    // progress bar width
+    document.getElementById("progressBar").style.width = percent + "%";
+  
+    // text update
+    document.getElementById("progressPercent").innerText = percent + "%";
+    document.getElementById("progressSection").innerText =
+      `Section ${currentStep} of ${totalSteps}`;
   }
   
   // START BUTTON
