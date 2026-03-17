@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naari Cycle – Women's Health Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">🌸 <span>Naari Cycle</span></div>
+    <div class="lang-switch" id="langSwitch">🌐 Language</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge" id="heroBadge">Women's Health Survey 2025</div>
+    <h1 id="heroTitle">Your Voice<br/>Shapes Better<br/><span>Period Care</span></h1>
+    <p id="heroDesc">Help us build an app that truly understands and supports every woman's health journey. This survey takes about 5 minutes.</p>
+    <button class="start-btn" id="startBtn">
+      <span id="startBtnText">Start Survey</span>
+      <span>→</span>
+    </button>
+    <div class="hero-stats">
+      <div class="stat"><strong>5 min</strong><span id="statTime">to complete</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><strong>100%</strong><span id="statAnon">Anonymous</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><strong>5</strong><span id="statSections">Sections</span></div>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <div class="cycle-ring ring1"></div>
+    <div class="cycle-ring ring2"></div>
+    <div class="cycle-ring ring3"></div>
+    <div class="center-icon">🌺</div>
+  </div>
+</section>
+
+<!-- SURVEY FORM -->
+<main class="survey-main" id="surveyMain" style="display:none">
+  <div class="survey-container">
+
+    <!-- Progress Bar -->
+    <div class="progress-wrap">
+      <div class="progress-steps" id="progressSteps"></div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progressBar"></div>
+      </div>
+      <div class="progress-label">
+        <span id="progressSection">Section 1 of 5</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+
+    <!-- Form Steps -->
+    <form id="surveyForm" novalidate>
+
+      <!-- STEP 1 -->
+      <div class="step" id="step1">
+        <div class="step-header">
+          <div class="step-icon">👩</div>
+          <h2 class="step-title" id="s1Title">Basic Information</h2>
+          <p class="step-sub" id="s1Sub">Tell us a bit about yourself</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_age">What is your age group?</label>
+          <div class="radio-grid" id="ageOptions"></div>
+          <input type="text" class="text-input" id="ageOther" placeholder="Enter your age" style="display:none; margin-top:10px"/>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_location">Where do you live?</label>
+          <div class="radio-grid" id="locationOptions"></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="step2" style="display:none">
+        <div class="step-header">
+          <div class="step-icon">📏</div>
+          <h2 class="step-title" id="s2Title">Physical Information</h2>
+          <p class="step-sub" id="s2Sub">This helps us understand better</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_height">Your height range</label>
+          <div class="radio-grid" id="heightOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_weight">Your weight range</label>
+          <div class="radio-grid" id="weightOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_weightChange">Weight change in last 3 months?</label>
+          <div class="radio-grid" id="weightChangeOptions"></div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="step3" style="display:none">
+        <div class="step-header">
+          <div class="step-icon">📅</div>
+          <h2 class="step-title" id="s3Title">Tracking Behavior</h2>
+          <p class="step-sub" id="s3Sub">How do you currently manage your cycle?</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_tracks">Do you track your periods?</label>
+          <div class="radio-grid" id="tracksOptions"></div>
+        </div>
+
+        <div class="field-group" id="trackMethodGroup" style="display:none">
+          <label class="field-label" id="q_trackMethod">How do you track?</label>
+          <div class="radio-grid" id="trackMethodOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_knowsApps">Do you know period tracking apps exist?</label>
+          <div class="radio-grid" id="knowsAppsOptions"></div>
+        </div>
+
+        <div class="field-group" id="whyNoAppGroup" style="display:none">
+          <label class="field-label" id="q_whyNoApp">Why don't you use them?</label>
+          <input type="text" class="text-input" id="whyNoApp" placeholder="Your reason..."/>
+        </div>
+
+        <div class="field-group" id="currentAppGroup" style="display:none">
+          <label class="field-label" id="q_currentApp">Which app do you use?</label>
+          <input type="text" class="text-input" id="currentApp" placeholder="App name..."/>
+        </div>
+
+        <div class="field-group" id="dislikesGroup" style="display:none">
+          <label class="field-label" id="q_dislikes">What do you NOT like about it?</label>
+          <textarea class="text-input textarea" id="dislikesApp" placeholder="Tell us..."></textarea>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step" id="step4" style="display:none">
+        <div class="step-header">
+          <div class="step-icon">✨</div>
+          <h2 class="step-title" id="s4Title">Features & Preferences</h2>
+          <p class="step-sub" id="s4Sub">Help us build the right app for you</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_features1">What features would you want most? <span class="multi-hint">(Select all that apply)</span></label>
+          <div class="check-grid" id="features1Options"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_prefLang">Preferred language in app</label>
+          <div class="radio-grid" id="prefLangOptions"></div>
+          <input type="text" class="text-input" id="prefLangOther" placeholder="Other language..." style="display:none; margin-top:10px"/>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_aiApp">Would you use an AI-based guidance app?</label>
+          <div class="radio-grid" id="aiAppOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_price">Monthly price you'd prefer</label>
+          <div class="radio-grid" id="priceOptions"></div>
+          <input type="text" class="text-input" id="priceOther" placeholder="Other amount..." style="display:none; margin-top:10px"/>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_features2">Second most important features <span class="multi-hint">(Select all that apply)</span></label>
+          <div class="check-grid" id="features2Options"></div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step" id="step5" style="display:none">
+        <div class="step-header">
+          <div class="step-icon">💊</div>
+          <h2 class="step-title" id="s5Title">Health & Behavior</h2>
+          <p class="step-sub" id="s5Sub">Understanding your health journey</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_problems">Problems you face <span class="multi-hint">(Select all that apply)</span></label>
+          <div class="check-grid" id="problemsOptions"></div>
+          <input type="text" class="text-input" id="problemOther" placeholder="Other problem..." style="display:none; margin-top:10px"/>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_avoidedGyn">Have you avoided visiting a gynecologist?</label>
+          <div class="radio-grid" id="avoidedGynOptions"></div>
+        </div>
+
+        <div class="field-group" id="avoidReasonGroup" style="display:none">
+          <label class="field-label" id="q_avoidReason">Why did you avoid? <span class="multi-hint">(Select all that apply)</span></label>
+          <div class="check-grid" id="avoidReasonOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_payDoctor">Would you pay for doctor consultation?</label>
+          <div class="radio-grid" id="payDoctorOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_paymentModel">Payment model preference</label>
+          <div class="radio-grid" id="paymentModelOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_understanding">How well do you understand irregular periods?</label>
+          <div class="radio-grid" id="understandingOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_searchedPcos">Have you searched online about PCOS?</label>
+          <div class="radio-grid" id="searchedPcosOptions"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="q_challenges">Any additional challenges you face?</label>
+          <textarea class="text-input textarea" id="additionalChallenges" placeholder="Share anything you'd like us to know..."></textarea>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Navigation -->
+    <div class="nav-btns">
+      <button class="btn-back" id="btnBack" style="display:none">← Back</button>
+      <button class="btn-next" id="btnNext">Next →</button>
+    </div>
+  </div>
+</main>
+
+<!-- SUCCESS SCREEN -->
+<section class="success-screen" id="successScreen" style="display:none">
+  <div class="success-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+  </div>
+  <div class="success-card">
+    <div class="success-anim">🎉</div>
+    <h2 id="successTitle">Thank You!</h2>
+    <p id="successMsg">Your response has been recorded. You're helping us build better period care for every woman in India.</p>
+    <div class="success-flower">🌸🌺🌸</div>
+    <button class="start-btn" onclick="location.reload()" id="anotherBtn">Take Another Survey</button>
+  </div>
+</section>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay" style="display:none">
+  <div class="loading-card">
+    <div class="spinner"></div>
+    <p id="loadingText">Submitting your response...</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
