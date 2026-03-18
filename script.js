@@ -269,6 +269,20 @@ function validateStep(step){
 // 🚀 SUBMIT
 // ==========================
 
+function safeVal(id){
+  const el = document.getElementById(id);
+  return el ? el.value || "" : "";
+}
+
+function safeRadio(name){
+  return getValue(name) || "";
+}
+
+function safeCheckbox(id){
+  const vals = getCheckboxValues(id);
+  return vals.length ? vals : [];
+}
+
 function submitForm(){
 
   document.getElementById("loadingOverlay").style.display="flex";
@@ -276,55 +290,55 @@ function submitForm(){
   const data = {
 
     // STEP 1
-    age: getValue("age")==="Other"
-      ? document.getElementById("ageOther").value
-      : getValue("age"),
+    age: safeRadio("age")==="Other"
+      ? safeVal("ageOther")
+      : safeRadio("age"),
 
-    location: getValue("location"),
+    location: safeRadio("location"),
 
     // STEP 2
-    height: getValue("height"),
-    weight: getValue("weight"),
-    weightChange: getValue("weightChange"),
+    height: safeRadio("height"),
+    weight: safeRadio("weight"),
+    weightChange: safeRadio("weightChange"),
 
     // STEP 3
-    tracks: getValue("tracks"),
-    trackMethod: getValue("trackMethod"),
-    knowsApps: getValue("knowsApps"),
+    tracks: safeRadio("tracks"),
+    trackMethod: safeRadio("trackMethod"),
+    knowsApps: safeRadio("knowsApps"),
 
-    currentApp: document.getElementById("currentApp").value,
-    dislikes: document.getElementById("dislikesApp").value,
+    currentApp: safeVal("currentApp"),
+    dislikes: safeVal("dislikesApp"),
 
     // STEP 4
-    features1: getCheckboxValues("features1Options"),
+    features1: safeCheckbox("features1Options"),
 
-    preferredLang: getValue("prefLang")==="Other"
-      ? document.getElementById("prefLangOther").value
-      : getValue("prefLang"),
+    preferredLang: safeRadio("prefLang")==="Other"
+      ? safeVal("prefLangOther")
+      : safeRadio("prefLang"),
 
-    aiApp: getValue("aiApp"),
+    aiApp: safeRadio("aiApp"),
 
-    price: getValue("price")==="Other"
-      ? document.getElementById("priceOther").value
-      : getValue("price"),
+    price: safeRadio("price")==="Other"
+      ? safeVal("priceOther")
+      : safeRadio("price"),
 
     // STEP 5
-    problems: getCheckboxValues("problemsOptions"),
-    problemOther: document.getElementById("problemOther").value,
+    problems: safeCheckbox("problemsOptions"),
+    problemOther: safeVal("problemOther"),
 
-    avoidedGyn: getValue("avoidedGyn"),
-    avoidReasons: getCheckboxValues("avoidReasonOptions"),
+    avoidedGyn: safeRadio("avoidedGyn"),
+    avoidReasons: safeCheckbox("avoidReasonOptions"),
 
-    payDoctor: getValue("payDoctor"),
-    paymentModel: getValue("paymentModel"),
+    payDoctor: safeRadio("payDoctor"),
+    paymentModel: safeRadio("paymentModel"),
 
-    understanding: getValue("understanding"),
-    searchedPcos: getValue("searchedPcos"),
+    understanding: safeRadio("understanding"),
+    searchedPcos: safeRadio("searchedPcos"),
 
-    additionalChallenges: document.getElementById("additionalChallenges").value
+    additionalChallenges: safeVal("additionalChallenges")
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbywVx5sxNevGcaHvCSqs5wRWSCDWjbpPR8NRm9EIN5mG-V5e5KRhWCpuBDpzm_k-oVRRw/exec",{
+  fetch("https://script.google.com/macros/s/AKfycbysCeQaH5acQRJct2DsOh4DQPX0ZHMspTIrZQaj3o5dl7xVXqJLfQnSlL_FZTP3ysYhzw/exec",{
     method:"POST",
     body:JSON.stringify(data)
   })
